@@ -18,6 +18,9 @@ open class MSGInputView: UIControl {
     /// The send button
     @IBOutlet open var sendButton: UIButton!
 
+    /// The delegate to use
+    public var delegate: MSGMessengerViewController?
+    
     /// The height constraint to be modified as required.
     /// This should not be set manually but instead use the `minHeight` and `maxHeight` properties.
     private var heightConstraint: NSLayoutConstraint!
@@ -118,7 +121,7 @@ open class MSGInputView: UIControl {
 }
 
 extension MSGInputView: MSGPlaceholderTextViewDelegate {
-
+    
     open func textViewDidChange(_ textView: UITextView) {
         sendButton.isEnabled = textView.text != ""
         let size = textView.sizeThatFits(CGSize(width: textView.bounds.size.width, height: .infinity))
@@ -127,6 +130,14 @@ extension MSGInputView: MSGPlaceholderTextViewDelegate {
         heightConstraint.constant = height < maxHeight ? height : maxHeight
 
         sendActions(for: .valueChanged)
+    }
+    
+    open func textViewDidEmptied() {
+        delegate?.textViewDidEmptied()
+    }
+    
+    open func textViewDidFilled() {
+        delegate?.textViewDidFilled()
     }
 
 }

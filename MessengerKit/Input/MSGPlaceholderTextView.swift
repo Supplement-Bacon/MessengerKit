@@ -19,9 +19,12 @@ open class MSGPlaceholderTextView: UIView {
     /// The label used for the placeholder
     private let label = UILabel()
     
-    /// The deleate for the view
+    /// The delegate for the view
     public weak var delegate: MSGPlaceholderTextViewDelegate?
     
+    /// The variable to store the filled state of the textView
+    private var wasFilled: Bool = false
+
     @IBInspectable
     public var placeholder: String = "Type something…" {
         didSet {
@@ -148,6 +151,14 @@ extension MSGPlaceholderTextView: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         delegate?.textViewDidChange(textView)
         label.isHidden = textView.text != ""
+        
+        if textView.text.isEmpty && wasFilled {
+            delegate?.textViewDidEmptied()
+            wasFilled = false
+        } else if !textView.text.isEmpty && !wasFilled {
+            delegate?.textViewDidFilled()
+            wasFilled = true
+        }
     }
     
 }
@@ -156,4 +167,7 @@ public protocol MSGPlaceholderTextViewDelegate: NSObjectProtocol {
     
     func textViewDidChange(_ textView: UITextView)
     
+    func textViewDidEmptied()
+    
+    func textViewDidFilled()
 }

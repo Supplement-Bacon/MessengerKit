@@ -47,6 +47,15 @@ public protocol MSGDelegate: NSObjectProtocol {
     /// - Returns: Whether the URL should be opened or not
     func shouldOpen(url: URL) -> Bool
     
+    /// Called when the textView is filled.
+    ///
+    /// - Parameter text: The text that was tapped inside the textview
+    func textViewDidFilled()
+    
+    /// Called when the textView is emptied.
+    ///
+    func textViewDidEmptied()
+    
 }
 
 extension MSGDelegate {
@@ -62,5 +71,9 @@ extension MSGDelegate {
     public func shouldDisplaySafari(for url: URL) -> Bool { return true }
     
     public func shouldOpen(url: URL) -> Bool { return true }
+    
+    public func textViewDidFilled() { }
+    
+    public func textViewDidEmptied() { }
     
 }
