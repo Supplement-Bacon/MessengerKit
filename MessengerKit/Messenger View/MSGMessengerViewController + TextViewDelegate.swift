@@ -3,6 +3,7 @@
 //  MessengerKit
 //
 //  Created by Samuel HASSID on 19/05/2020.
+//  Copyright © 2020 Supplement Bacon. All rights reserved.
 //
 
 import UIKit
