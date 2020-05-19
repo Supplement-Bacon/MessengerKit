@@ -11,16 +11,14 @@ import Foundation
 
 extension MSGMessengerViewController: MSGPlaceholderTextViewDelegate {
     
-    open func textViewDidChange(_ textView: UITextView) {
-        //
+    open func textViewDidChange(_ textView: UITextView) { }
+    
+    open func textViewDidEmptied() {
+        delegate?.inputViewDidEmptied()
     }
     
-    @objc open func textViewDidEmptied() {
-        delegate?.textViewDidEmptied()
-    }
-    
-    @objc open func textViewDidFilled() {
-        delegate?.textViewDidFilled()
+    open func textViewDidFilled() {
+        delegate?.inputViewDidFilled()
     }
     
 }
