@@ -31,6 +31,8 @@ open class MSGMessengerViewController: UIViewController {
         inputView.style = style
         inputView.tintColor = tintColor
         
+        inputView.delegate = self
+        
         return inputView
     }()
     
