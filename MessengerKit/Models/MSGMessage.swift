@@ -19,7 +19,7 @@ public class MSGMessage: NSObject{
     public let body: MSGMessageBody
     
     /// The user that sent the message.
-    public let user: MSGUser
+    public var user: MSGUser
     
     /// The time that the message was sent.
     public let sentAt: Date
